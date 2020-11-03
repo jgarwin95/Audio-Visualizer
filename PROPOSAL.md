@@ -5,8 +5,7 @@ In this project I will create an interactive nearest neighbor network graph that
 will additionally be able to interface with music, changing it's shape and properties
 in accordance with various aspects of the music as well as through user input. 
 
-This idea draws inspiration from two sources. First from the [StackOverflow Developer
-                                                              Survey website](https://insights.stackoverflow.com/survey/).
+This idea draws inspiration from two sources. First from the [StackOverflow Developer Survey website](https://insights.stackoverflow.com/survey/).
  (This can be seen below).
 
 ![photo](sample.gif)
