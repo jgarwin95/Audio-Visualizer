@@ -17,6 +17,8 @@ class Node {
   void Draw();
 
   void Update();
+  const glm::vec2 &GetPos() const;
+  const glm::vec2 &GetVelo() const;
  private:
   glm::vec2 pos_;
   glm::vec2 velo_;

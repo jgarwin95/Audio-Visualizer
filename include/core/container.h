@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "node.h"
+#include "connector.h"
 
 namespace music_visualizer {
 
@@ -19,6 +20,8 @@ class Container {
 
  private:
   std::vector<Node> nodes_;
+  std::vector<Connector> connectors_;
+  //std::unordered_map<std::pair<Node, Node>, Connector> connectors2_;
   ci::Rectf rect_;
 
 };

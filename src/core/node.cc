@@ -24,4 +24,12 @@ void Node::Update() {
   pos_ += velo_;
 }
 
+const glm::vec2 &Node::GetPos() const {
+  return pos_;
+}
+
+const glm::vec2 &Node::GetVelo() const {
+  return velo_;
+}
+
 } // namespace music_visualizer

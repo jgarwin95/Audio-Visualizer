@@ -56,6 +56,7 @@ list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
         src/visualizer/music_visualizer_app.cc
         src/core/node.cc
         src/core/container.cc
+        src/core/connector.cc
         )
 
 list(APPEND TEST_FILES tests/music_visualizer_test.cc# add test files here i.e. "tests/test_classifier.cc"

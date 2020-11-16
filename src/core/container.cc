@@ -17,11 +17,24 @@ namespace music_visualizer {
     for (Node& node : nodes_) {
       node.Draw();
     }
+
+    for (Connector& connector : connectors_) {
+      connector.Draw();
+    }
   }
 
   void Container::Update() {
     for (Node& node : nodes_) {
       node.Update();
+    }
+
+    for (size_t i = 0; i < nodes_.size() - 1; i++) {
+      for (size_t j = i + 1; i < nodes_.size(); i++) {
+        // If nodes are within range create a connector between the two
+        if (glm::distance(nodes_.at(i).GetPos(), nodes_.at(j).GetPos()) <= 200) {
+          connectors_.emplace_back(nodes_.at(i), nodes_.at(j));
+        }
+      }
     }
   }
 
