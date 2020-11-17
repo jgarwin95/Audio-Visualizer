@@ -17,8 +17,8 @@ class Connector {
 
  private:
   float distance_;
-  Node node1_;
-  Node node2_;
+  Node& node1_;
+  Node& node2_;
   float connection_strength_;
 
 };

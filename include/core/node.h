@@ -15,14 +15,19 @@ class Node {
   Node(const glm::vec2& pos, const glm::vec2& velo, float radius);
 
   void Draw();
-
   void Update();
+  void AddConnection(Node& other);
+  bool isConnected(Node& other);
   const glm::vec2 &GetPos() const;
   const glm::vec2 &GetVelo() const;
+
+  bool operator==(const Node& rhs) const;
+
  private:
   glm::vec2 pos_;
   glm::vec2 velo_;
   float radius_;
+  std::vector<std::reference_wrapper<Node>> connections_;
 
 };
 

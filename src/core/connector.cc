@@ -6,7 +6,6 @@
 
 namespace music_visualizer {
 
-
 Connector::Connector(Node& node1, Node& node2) : node1_(node1), node2_(node2) {
   distance_ = glm::distance(node1.GetPos(), node2.GetPos());
   connection_strength_ = 200.0f/distance_;

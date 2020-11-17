@@ -36,6 +36,19 @@ FetchContent_Declare(
         GIT_TAG v2.x
 )
 
+set(Boost_USE_STATIS_LIBS OFF)
+set(Boost_USE MUTLTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+set(BOOST_ROOT /local/boost_1_74_0)
+set(BOOST_INCLUDEDIR /local/boost_1_74_0)
+set(BOOST_LIBRARYDIR /local/boost_1_74_0/lib64-msvc-14.0)
+find_package(Boost REQUIRED)
+
+if (Boost_FOUND)
+    include_directories(${BOOST_INCLUDEDIR})
+    add_library(boost INTERFACE)
+endif ()
+
 # Adds Catch2 testing library
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
@@ -62,7 +75,8 @@ list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
 list(APPEND TEST_FILES tests/music_visualizer_test.cc# add test files here i.e. "tests/test_classifier.cc"
         )
 
-#add_executable(# add executable here i.e. "train-model apps/train_model_main.cc ${CORE_SOURCE_FILES})"
+#add_executable(music-visualizer apps/cinder_app_main.cc ${CORE_SOURCE_FILES} ${Boost_LIBRARIES})
+        # add executable here i.e. "train-model apps/train_model_main.cc ${CORE_SOURCE_FILES})"
 #target_include_directories(train-model PRIVATE include)
 
 ci_make_app(
@@ -70,6 +84,7 @@ ci_make_app(
         CINDER_PATH     ${CINDER_PATH}
         SOURCES         apps/cinder_app_main.cc ${SOURCE_FILES}
         INCLUDES        include
+        LIBRARIES       boost
 )
 
 ci_make_app(

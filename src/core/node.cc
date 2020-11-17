@@ -24,12 +24,32 @@ void Node::Update() {
   pos_ += velo_;
 }
 
+void Node::AddConnection(Node& other) {
+  connections_.push_back(other);
+}
+
+bool Node::isConnected(Node &other) {
+  for (Node& node : connections_) {
+    if (node == other) {
+      return true;
+    }
+  }
+  return false;
+}
+
 const glm::vec2 &Node::GetPos() const {
   return pos_;
 }
 
 const glm::vec2 &Node::GetVelo() const {
   return velo_;
+}
+
+bool Node::operator==(const Node& rhs) const {
+  if ((rhs.GetPos() == this->GetPos()) && rhs.GetVelo() == this->GetVelo()) {
+    return true;
+  }
+  return false;
 }
 
 } // namespace music_visualizer
