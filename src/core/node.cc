@@ -25,19 +25,6 @@ void Node::Update() {
 
 }
 
-void Node::AddConnection(Node& other) {
-  connections_.push_back(other);
-}
-
-bool Node::isConnected(Node &other) {
-  for (Node& node : connections_) {
-    if (node == other) {
-      return true;
-    }
-  }
-  return false;
-}
-
 const glm::vec2 &Node::GetPos() const {
   return pos_;
 }
@@ -59,6 +46,10 @@ bool Node::operator==(const Node& rhs) const {
 
 void Node::ResetPosition(glm::vec2 pos) {
   pos_ = pos;
+}
+
+void Node::ResetVelocity(glm::vec2 new_velocity) {
+  velo_ = new_velocity;
 }
 
 } // namespace music_visualizer
