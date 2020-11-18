@@ -11,6 +11,13 @@ namespace music_visualizer {
 
     nodes_.emplace_back(glm::vec2(X_dimension*2/3.0, Y_dimension/2.0), glm::vec2(-2,0), 2.0f);
     nodes_.emplace_back(glm::vec2(X_dimension*1/3.0, Y_dimension/2.0 + 100), glm::vec2(2,0), 2.0f);
+
+    for (size_t i = 0; i < nodes_.size() - 1; i++) {
+      for (size_t j = i + 1; j < nodes_.size(); j++) {
+        // create a connection for each node
+        connectors_.emplace_back(nodes_.at(i), nodes_.at(j));
+      }
+    }
   }
 
   void Container::Draw() {
@@ -25,25 +32,17 @@ namespace music_visualizer {
 
   void Container::Update() {
     for (Node& node : nodes_) {
-      node.Update();
-    }
+      float radius = node.GetRadius();
 
-    for (size_t i = 0; i < nodes_.size() - 1; i++) {
-      for (size_t j = i + 1; j < nodes_.size(); j++) {
-        // If nodes are within range create a connector between the two
-        glm::vec2 pos1 = nodes_.at(i).GetPos();
-        glm::vec2 pos2 = nodes_.at(j).GetPos();
-        if ((glm::distance(pos1, pos2) <= 200) && (!nodes_.at(i).isConnected(nodes_.at(j)))) {
-          connectors_.emplace_back(nodes_.at(i), nodes_.at(j));
-          nodes_.at(i).AddConnection(nodes_.at(j));
-          nodes_.at(j).AddConnection(nodes_.at(i));
-        }
+      node.Update();
+
+      // If nodes are out of bounds send them to the other side
+      if (node.GetPos().x - radius > rect_.x2) {
+        node.ResetPosition(glm::vec2(rect_.x1 - radius, node.GetPos().y));
+      } else if (node.GetPos().x + radius < rect_.x1) {
+        node.ResetPosition(glm::vec2(rect_.x2 + radius, node.GetPos().y));
       }
     }
-
-    // Remove Connector object if the two nodes are out of range.
-    connectors_.erase(std::remove_if(connectors_.begin(), connectors_.end(),
-                                     [this](Connector& conn) { return this->isOutOfRange(conn);}), connectors_.end());
   }
 
   bool Container::isOutOfRange(Connector& obj) {

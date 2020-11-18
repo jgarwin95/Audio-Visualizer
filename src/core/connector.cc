@@ -12,8 +12,11 @@ Connector::Connector(Node& node1, Node& node2) : node1_(node1), node2_(node2) {
 }
 
 void Connector::Draw() {
-  ci::gl::color(ci::Color("white"));
-  ci::gl::drawLine(node1_.GetPos(), node2_.GetPos());
+  // Only draw if they are within range
+  if (glm::distance(node1_.GetPos(), node2_.GetPos()) < 200) {
+    ci::gl::color(ci::Color("white"));
+    ci::gl::drawLine(node1_.GetPos(), node2_.GetPos());
+  }
 }
 
 float Connector::GetDistance() {

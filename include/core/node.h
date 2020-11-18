@@ -20,6 +20,8 @@ class Node {
   bool isConnected(Node& other);
   const glm::vec2 &GetPos() const;
   const glm::vec2 &GetVelo() const;
+  float GetRadius() const;
+  void ResetPosition(glm::vec2 pos);
 
   bool operator==(const Node& rhs) const;
 

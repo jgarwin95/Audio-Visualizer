@@ -22,6 +22,7 @@ void Node::Draw() {
 void Node::Update() {
   // Move node by velocity amount
   pos_ += velo_;
+
 }
 
 void Node::AddConnection(Node& other) {
@@ -45,11 +46,19 @@ const glm::vec2 &Node::GetVelo() const {
   return velo_;
 }
 
+float Node::GetRadius() const {
+  return radius_;
+}
+
 bool Node::operator==(const Node& rhs) const {
   if ((rhs.GetPos() == this->GetPos()) && rhs.GetVelo() == this->GetVelo()) {
     return true;
   }
   return false;
+}
+
+void Node::ResetPosition(glm::vec2 pos) {
+  pos_ = pos;
 }
 
 } // namespace music_visualizer
