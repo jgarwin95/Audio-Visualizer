@@ -16,4 +16,8 @@ void Connector::Draw() {
   ci::gl::drawLine(node1_.GetPos(), node2_.GetPos());
 }
 
+float Connector::GetDistance() {
+  return glm::distance(node1_.GetPos(), node2_.GetPos());
+}
+
 } // namespace music_visualizer

@@ -28,6 +28,12 @@ namespace music_visualizer {
       node.Update();
     }
 
+    for (size_t i = 0; i < connectors_.size(); i++) {
+      if (connectors_.at(i).GetDistance() > 200) {
+        connectors_.erase(connectors_.begin() + i);
+      }
+    }
+
     for (size_t i = 0; i < nodes_.size() - 1; i++) {
       for (size_t j = i + 1; j < nodes_.size(); j++) {
         // If nodes are within range create a connector between the two
