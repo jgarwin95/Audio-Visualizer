@@ -24,6 +24,7 @@ class Container {
   //std::unordered_map<std::pair<Node, Node>, Connector> connectors2_;
   ci::Rectf rect_;
 
+  bool isOutOfRange(Connector& obj);
 };
 
 }

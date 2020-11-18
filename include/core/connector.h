@@ -28,12 +28,12 @@ class Connector {
   return *this;
   }
 
+
  private:
   float distance_;
   Node& node1_;
   Node& node2_;
   float connection_strength_;
-
 };
 
 } // namespace music_visualizer
