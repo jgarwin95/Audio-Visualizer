@@ -14,10 +14,16 @@ namespace music_visualizer {
 
 class Container {
  public:
+  Container(std::vector<Node> nodes);
   Container(int X_dimension, int Y_dimension);
 
   void Draw();
   void Update();
+
+  const std::vector<Node> &GetNodes() const;
+  const std::vector<Connector> &GetConnectors() const;
+
+  void PlaceParticle(Node& node);
 
  private:
   int x_dimension_;

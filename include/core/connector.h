@@ -14,15 +14,15 @@ class Connector {
  public:
   Connector(Node& node1, Node& node2);
   void Draw();
-
   void Update();
-  float GetDistance();
 
  private:
+  const float MAX_DISTANCE = 200;
+
+  int color_ = 255;
   float distance_;
   Node& node1_;
   Node& node2_;
-  float connection_strength_;
 };
 
 } // namespace music_visualizer
