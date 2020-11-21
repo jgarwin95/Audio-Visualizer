@@ -9,20 +9,20 @@
 
 namespace music_visualizer {
 
+const float static MAX_CONNECTION_DISTANCE = 200;
+
 class Connector {
 
  public:
-  Connector(Node& node1, Node& node2);
+  Connector(const Node& node1,const Node& node2);
   void Draw();
   void Update();
 
  private:
-  const float MAX_DISTANCE = 200;
-
   int color_ = 255;
   float distance_;
-  Node& node1_;
-  Node& node2_;
+  const Node& node1_;
+  const Node& node2_;
 };
 
 } // namespace music_visualizer

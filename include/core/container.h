@@ -26,6 +26,8 @@ class Container {
   void PlaceParticle(Node& node);
 
  private:
+  const size_t NUM_NODES = 50;
+
   int x_dimension_;
   int y_dimension_;
   std::vector<Node> nodes_;
@@ -34,6 +36,6 @@ class Container {
 
 };
 
-}
+} // namespace music_visualizer
 
 #endif //MUSIC_VISUALIZER_SRC_CORE_CONTAINER_H_

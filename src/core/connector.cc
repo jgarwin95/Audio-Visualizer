@@ -6,13 +6,13 @@
 
 namespace music_visualizer {
 
-Connector::Connector(Node& node1, Node& node2) : node1_(node1), node2_(node2) {
+Connector::Connector(const Node& node1,const Node& node2) : node1_(node1), node2_(node2) {
   distance_ = glm::distance(node1.GetPos(), node2.GetPos());
 }
 
 void Connector::Draw() {
   // Only draw if they are within range
-  if (glm::distance(node1_.GetPos(), node2_.GetPos()) < MAX_DISTANCE) {
+  if (glm::distance(node1_.GetPos(), node2_.GetPos()) < MAX_CONNECTION_DISTANCE) {
     ci::gl::color(ci::Color8u(color_,color_,color_));
     ci::gl::drawLine(node1_.GetPos(), node2_.GetPos());
   }
@@ -20,9 +20,12 @@ void Connector::Draw() {
 
 void Connector::Update() {
   distance_ = glm::distance(node1_.GetPos(), node2_.GetPos());
-  if (distance_ <= MAX_DISTANCE) {
+  if (distance_ <= 50) {
+    // full connection strength if within 50
+    color_ = 255;
+  } else if (distance_ <= MAX_CONNECTION_DISTANCE) {
     // color(shading) is proportional to distance between particles
-    color_ = 255 - (int) (255 * distance_/MAX_DISTANCE);
+    color_ = 255 - (int) (255 * distance_/(MAX_CONNECTION_DISTANCE - 50));
   }
 }
 } // namespace music_visualizer
