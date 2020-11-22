@@ -24,6 +24,7 @@ class Container {
   const std::vector<Connector> &GetConnectors() const;
 
   void PlaceParticle(Node& node);
+  void UpdateMouseNode(const glm::vec2& pos);
 
  private:
   const size_t NUM_NODES = 50;
@@ -31,6 +32,7 @@ class Container {
   int x_dimension_;
   int y_dimension_;
   std::vector<Node> nodes_;
+  Node mouse_node_;
   std::vector<Connector> connectors_;
   ci::Rectf rect_;
 

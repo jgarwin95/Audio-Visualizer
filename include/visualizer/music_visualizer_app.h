@@ -22,13 +22,13 @@ class MusicVisualizerApp : public ci::app::App {
   void draw() override;
   void update() override;
   void setup() override;
+  void mouseMove(ci::app::MouseEvent event) override;
 
   const double kWindowSizeX = 1100;
   const double kWindowSizeY = 950;
 
  private:
   Container container_;
-
 };
 
 }  // namespace music_visualizer

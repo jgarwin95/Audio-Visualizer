@@ -25,5 +25,9 @@ void MusicVisualizerApp::update() {
   container_.Update();
 }
 
+void MusicVisualizerApp::mouseMove(ci::app::MouseEvent event) {
+  container_.UpdateMouseNode(event.getPos());
+}
+
 }  // namespace music_visualizer
 

@@ -31,6 +31,10 @@ Container::Container(int X_dimension, int Y_dimension) : x_dimension_(X_dimensio
       connectors_.emplace_back(nodes_.at(i), nodes_.at(j));
     }
   }
+  mouse_node_ = Node(glm::vec2(0,0), glm::vec2(0,0), 0);
+  for (Node &node : nodes_) {
+    connectors_.emplace_back(mouse_node_, node);
+  }
 }
 
 Container::Container(std::vector<Node> nodes) : x_dimension_(200), y_dimension_(200), nodes_(std::move(nodes)) {
@@ -101,5 +105,13 @@ const std::vector<Node> &Container::GetNodes() const {
 const std::vector<Connector> &Container::GetConnectors() const {
   return connectors_;
 }
+
+void Container::PlaceParticle(Node &node) {
+  nodes_.push_back(node);
+}
+
+void Container::UpdateMouseNode(const glm::vec2& pos) {
+  mouse_node_.ResetPosition(pos);
+};
 
 } // namespace music_visualizer
