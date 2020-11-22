@@ -20,12 +20,12 @@ void Connector::Draw() {
 
 void Connector::Update() {
   distance_ = glm::distance(node1_.GetPos(), node2_.GetPos());
-  if (distance_ <= 50) {
-    // full connection strength if within 50
+  if (distance_ < MIN_CONNECTION_DISTANCE) {
+    // full connection strength if within MIN_CONNECTION_DISTANCE
     color_ = 255;
   } else if (distance_ <= MAX_CONNECTION_DISTANCE) {
     // color(shading) is proportional to distance between particles
-    color_ = 255 - (int) (255 * distance_/(MAX_CONNECTION_DISTANCE - 50));
+    color_ = 255 - (int) (255 * ((distance_ - MIN_CONNECTION_DISTANCE)/(MAX_CONNECTION_DISTANCE - MIN_CONNECTION_DISTANCE)));
   }
 }
 } // namespace music_visualizer

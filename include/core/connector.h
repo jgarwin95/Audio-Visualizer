@@ -9,7 +9,8 @@
 
 namespace music_visualizer {
 
-const float static MAX_CONNECTION_DISTANCE = 200;
+const float static MAX_CONNECTION_DISTANCE = 300;
+const float static MIN_CONNECTION_DISTANCE = 100;
 
 class Connector {
 
