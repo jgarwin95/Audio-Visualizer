@@ -3,20 +3,39 @@
 //
 
 #include "../../include/visualizer/music_visualizer_app.h"
+#include <exception>
 
 
 namespace music_visualizer {
+using namespace ci;
 
 MusicVisualizerApp::MusicVisualizerApp() : container_((int) kWindowSizeX, (int) kWindowSizeY){
-  ci::app::setWindowSize((int) kWindowSizeX, (int) kWindowSizeY);
+  app::setWindowSize((int) kWindowSizeX, (int) kWindowSizeY);
 }
 
 void MusicVisualizerApp::setup() {
+  // helpful sources for loading files in cinder:
+  // https://github.com/Leundai/Vibing-Audiovisual/blob/master/apps/vibe_app.cc
+  // https://github.com/paulhoux/Cinder-Samples/blob/master/AudioVisualizer/src/AudioVisualizerApp.cpp
+  try {
+    fs::path path = getOpenFilePath("", {"mp3", "wav"});
+    if (!path.empty()) {
+      audio::SourceFileRef sourceFile = audio::load(loadFile(path));
+      mVoice_ = audio::Voice::create( sourceFile );
+
+      // Start playing audio from the voice
+      mVoice_->start();
+    }
+  } catch (Exception &exc) {
+    std::cout << "Unable to load music file. " << exc.what() << std::endl;
+  }
+
+
 }
 
 void MusicVisualizerApp::draw() {
-  ci::Color8u background_color(0, 0, 0);  // black
-  ci::gl::clear(background_color);
+  Color8u background_color(0, 0, 0);  // black
+  gl::clear(background_color);
 
   container_.Draw();
 }
@@ -25,7 +44,7 @@ void MusicVisualizerApp::update() {
   container_.Update();
 }
 
-void MusicVisualizerApp::mouseMove(ci::app::MouseEvent event) {
+void MusicVisualizerApp::mouseMove(app::MouseEvent event) {
   container_.UpdateMouseNode(event.getPos());
 }
 

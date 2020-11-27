@@ -11,18 +11,24 @@ namespace music_visualizer {
 
 class Node {
  public:
-  Node();
+  /**
+   * Construct a node object that floats through space connecting to other nodes
+   * @param pos glm::vec2 that denotes spatial positioning
+   * @param velo glm::vec2 that denotes velocity
+   * @param radius float value for radius of node
+   */
   Node(const glm::vec2& pos, const glm::vec2& velo, float radius);
+  Node();
 
   void Draw();
   void Update();
+
+  // Getters & Setters
   const glm::vec2 &GetPos() const;
   const glm::vec2 &GetVelo() const;
   float GetRadius() const;
-  void ResetPosition(glm::vec2 pos);
-  void ResetVelocity(glm::vec2 new_velocity);
-
-  bool operator==(const Node& rhs) const;
+  void ResetPosition(const glm::vec2 &pos);
+  void ResetVelocity(const glm::vec2 &velo);
 
  private:
   glm::vec2 pos_;

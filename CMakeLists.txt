@@ -70,6 +70,7 @@ list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
         src/core/node.cc
         src/core/container.cc
         src/core/connector.cc
+        src/music_player/music_player.cc
         )
 
 list(APPEND TEST_FILES tests/music_visualizer_test.cc# add test files here i.e. "tests/test_classifier.cc"

@@ -9,8 +9,13 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "core/container.h"
+#include "cinder/audio/Voice.h"
+#include "cinder/audio/audio.h"
+
 
 namespace music_visualizer {
+
+using namespace ci;
 
 /**
  * Simulation of ideal gases.
@@ -22,13 +27,14 @@ class MusicVisualizerApp : public ci::app::App {
   void draw() override;
   void update() override;
   void setup() override;
-  void mouseMove(ci::app::MouseEvent event) override;
+  void mouseMove(app::MouseEvent event) override;
 
   const double kWindowSizeX = 1100;
   const double kWindowSizeY = 950;
 
  private:
   Container container_;
+  audio::VoiceRef mVoice_;
 };
 
 }  // namespace music_visualizer

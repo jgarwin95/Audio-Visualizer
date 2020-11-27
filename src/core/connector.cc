@@ -26,6 +26,15 @@ void Connector::Update() {
   } else if (distance_ <= MAX_CONNECTION_DISTANCE) {
     // color(shading) is proportional to distance between particles
     color_ = 255 - (int) (255 * ((distance_ - MIN_CONNECTION_DISTANCE)/(MAX_CONNECTION_DISTANCE - MIN_CONNECTION_DISTANCE)));
+  } else {
+    color_ = 0;
   }
+}
+
+int Connector::GetColor() const {
+  return color_;
+}
+float Connector::GetDistance() const {
+  return distance_;
 }
 } // namespace music_visualizer

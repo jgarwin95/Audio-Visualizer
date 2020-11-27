@@ -106,10 +106,6 @@ const std::vector<Connector> &Container::GetConnectors() const {
   return connectors_;
 }
 
-void Container::PlaceParticle(Node &node) {
-  nodes_.push_back(node);
-}
-
 void Container::UpdateMouseNode(const glm::vec2& pos) {
   mouse_node_.ResetPosition(pos);
 };
