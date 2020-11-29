@@ -50,11 +50,11 @@ Container::Container(std::vector<Node> nodes) : x_dimension_(200), y_dimension_(
 }
 
 void Container::Draw() {
-  for (Node& node : nodes_) {
-    node.Draw();
-  }
   for (Connector& connector : connectors_) {
     connector.Draw();
+  }
+  for (Node& node : nodes_) {
+    node.Draw();
   }
 }
 
@@ -108,6 +108,12 @@ const std::vector<Connector> &Container::GetConnectors() const {
 
 void Container::UpdateMouseNode(const glm::vec2& pos) {
   mouse_node_.ResetPosition(pos);
-};
+}
+
+void Container::ScaleConnectionStrength(float decibels) {
+  for (Connector& connector : connectors_) {
+    connector.ScaleColor(decibels);
+  }
+}
 
 } // namespace music_visualizer

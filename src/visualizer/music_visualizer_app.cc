@@ -3,8 +3,6 @@
 //
 
 #include "../../include/visualizer/music_visualizer_app.h"
-#include <exception>
-
 
 namespace music_visualizer {
 using namespace ci;
@@ -20,17 +18,12 @@ void MusicVisualizerApp::setup() {
   try {
     fs::path path = getOpenFilePath("", {"mp3", "wav"});
     if (!path.empty()) {
-      audio::SourceFileRef sourceFile = audio::load(loadFile(path));
-      mVoice_ = audio::Voice::create( sourceFile );
-
-      // Start playing audio from the voice
-      mVoice_->start();
+      player_.LoadMusic(path);
+      player_.PlayMusic();
     }
   } catch (Exception &exc) {
-    std::cout << "Unable to load music file. " << exc.what() << std::endl;
+    app::console() << "Unable to load music file. " << exc.what() << std::endl;
   }
-
-
 }
 
 void MusicVisualizerApp::draw() {
@@ -42,6 +35,7 @@ void MusicVisualizerApp::draw() {
 
 void MusicVisualizerApp::update() {
   container_.Update();
+  container_.ScaleConnectionStrength(player_.GetDecibelLevel());
 }
 
 void MusicVisualizerApp::mouseMove(app::MouseEvent event) {

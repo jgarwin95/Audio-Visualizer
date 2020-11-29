@@ -35,6 +35,7 @@ class Connector {
    * Update distance and the associated connection strength with that distance
    */
   void Update();
+  void ScaleColor(float decibel);
   // Getters & Setters
   int GetColor() const;
   float GetDistance() const;
@@ -47,6 +48,8 @@ class Connector {
   float distance_;
   const Node& node1_;
   const Node& node2_;
+  float current_min_dist_;
+  float current_max_dist_;
 };
 
 } // namespace music_visualizer

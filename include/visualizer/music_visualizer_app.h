@@ -9,8 +9,7 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "core/container.h"
-#include "cinder/audio/Voice.h"
-#include "cinder/audio/audio.h"
+#include "music_player/music_player.h"
 
 
 namespace music_visualizer {
@@ -34,7 +33,7 @@ class MusicVisualizerApp : public ci::app::App {
 
  private:
   Container container_;
-  audio::VoiceRef mVoice_;
+  MusicPlayer player_;
 };
 
 }  // namespace music_visualizer

@@ -43,6 +43,7 @@ class Container {
    */
   void UpdateMouseNode(const glm::vec2& pos);
 
+  void ScaleConnectionStrength(float decibels);
  private:
   /**
    * Number of nodes to be generating upon construction of a container object
