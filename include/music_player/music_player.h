@@ -17,14 +17,11 @@ class MusicPlayer {
   MusicPlayer() = default;
   void LoadMusic(const fs::path& path);
   void PlayMusic();
-  float GetDecibelLevel();
+  float GetRMSVolume();
 
  private:
-  audio::VoiceRef music_;
-  audio::MonitorSpectralNode		spectral_node_;
-  audio::MonitorSpectralNodeRef	mMonitorSpectralNode_;
   audio::MonitorNodeRef monitor_node_;
-  audio::BufferPlayerNodeRef		mBufferPlayerNode_;
+  audio::BufferPlayerNodeRef buffer_player_node_;
 };
 
 } //namespace music_visualizer

@@ -33,7 +33,7 @@ class Container {
   /**
    * Update particles and connectors
    */
-  void Update();
+  void Update(float RMSVolume = 1);
 
   const std::vector<Node> &GetNodes() const;
   const std::vector<Connector> &GetConnectors() const;
@@ -43,7 +43,6 @@ class Container {
    */
   void UpdateMouseNode(const glm::vec2& pos);
 
-  void ScaleConnectionStrength(float decibels);
  private:
   /**
    * Number of nodes to be generating upon construction of a container object

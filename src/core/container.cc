@@ -58,7 +58,7 @@ void Container::Draw() {
   }
 }
 
-void Container::Update() {
+void Container::Update(float RMSVolume) {
   for (Node& node : nodes_) {
     float radius = node.GetRadius();
     // node movement
@@ -74,7 +74,7 @@ void Container::Update() {
       int y_pos = rand() % (int) ((y_dimension_ - node.GetRadius()));
       int x_velo = rand() % 4;
       int y_velo = rand() % 4;
-      // virtual coin flip to multiply -1 by 1 or 2
+      // virtual coin flip to raise -1 to the power of 1 or 2
       int direction = rand() % 2 + 1;
       // assign new position and velocity
       if (side == 0) { // reset up
@@ -94,7 +94,7 @@ void Container::Update() {
   }
   // update connection strength of each connector
   for (Connector& connector : connectors_) {
-    connector.Update();
+    connector.Update(RMSVolume);
   }
 }
 
@@ -108,12 +108,6 @@ const std::vector<Connector> &Container::GetConnectors() const {
 
 void Container::UpdateMouseNode(const glm::vec2& pos) {
   mouse_node_.ResetPosition(pos);
-}
-
-void Container::ScaleConnectionStrength(float decibels) {
-  for (Connector& connector : connectors_) {
-    connector.ScaleColor(decibels);
-  }
 }
 
 } // namespace music_visualizer

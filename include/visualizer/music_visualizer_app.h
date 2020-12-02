@@ -34,6 +34,7 @@ class MusicVisualizerApp : public ci::app::App {
  private:
   Container container_;
   MusicPlayer player_;
+  bool music_is_playing_;
 };
 
 }  // namespace music_visualizer

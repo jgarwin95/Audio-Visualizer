@@ -9,6 +9,7 @@ using namespace ci;
 
 MusicVisualizerApp::MusicVisualizerApp() : container_((int) kWindowSizeX, (int) kWindowSizeY){
   app::setWindowSize((int) kWindowSizeX, (int) kWindowSizeY);
+  music_is_playing_ = false;
 }
 
 void MusicVisualizerApp::setup() {
@@ -20,6 +21,9 @@ void MusicVisualizerApp::setup() {
     if (!path.empty()) {
       player_.LoadMusic(path);
       player_.PlayMusic();
+      music_is_playing_ = true;
+    } else {
+      music_is_playing_ = false;
     }
   } catch (Exception &exc) {
     app::console() << "Unable to load music file. " << exc.what() << std::endl;
@@ -34,8 +38,13 @@ void MusicVisualizerApp::draw() {
 }
 
 void MusicVisualizerApp::update() {
-  container_.Update();
-  container_.ScaleConnectionStrength(player_.GetDecibelLevel());
+  if (music_is_playing_) {
+    // Feed current volume level to container
+    container_.Update(player_.GetRMSVolume());
+  } else {
+    // no music is playing
+    container_.Update();
+  }
 }
 
 void MusicVisualizerApp::mouseMove(app::MouseEvent event) {
