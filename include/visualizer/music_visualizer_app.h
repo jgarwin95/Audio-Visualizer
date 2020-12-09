@@ -10,6 +10,7 @@
 #include "cinder/gl/gl.h"
 #include "core/container.h"
 #include "music_player/music_player.h"
+#include "controls/color_picker.h"
 
 
 namespace music_visualizer {
@@ -28,13 +29,16 @@ class MusicVisualizerApp : public ci::app::App {
   void setup() override;
   void mouseMove(app::MouseEvent event) override;
 
-  const double kWindowSizeX = 1100;
-  const double kWindowSizeY = 950;
+  double kWindowSizeX = 2000;
+
+  double kWindowSizeY = 1000;
 
  private:
   Container container_;
   MusicPlayer player_;
+  ColorPicker picker1_;
   bool music_is_playing_;
+
 };
 
 }  // namespace music_visualizer

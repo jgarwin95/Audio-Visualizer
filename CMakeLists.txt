@@ -71,6 +71,7 @@ list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
         src/core/container.cc
         src/core/connector.cc
         src/music_player/music_player.cc
+        src/controls/color_picker.cc
         )
 
 list(APPEND TEST_FILES tests/music_visualizer_test.cc# add test files here i.e. "tests/test_classifier.cc"

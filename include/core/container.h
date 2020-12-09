@@ -14,6 +14,7 @@ namespace music_visualizer {
 
 class Container {
  public:
+  Container() = default;
   /**
    * Construct container object from a set list of nodes. Size of container is fixed.
    * Primarily for testing purposes
