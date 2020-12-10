@@ -20,6 +20,7 @@ class ColorPicker {
   glm::vec2 top_left_;
   int kXdimension = 255;
   int kYdimension = 255;
+  int current_color_ = 255;
 };
 
 }

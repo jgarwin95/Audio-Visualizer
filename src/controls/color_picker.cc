@@ -20,9 +20,14 @@ void ColorPicker::Draw() {
   float rect_side = 5;
   glm::vec2 current_radius_pos = top_left_ + glm::vec2(3,3);
   // double for loop that moves the current rect position along by an amount equal to the side length
-  for (float x = 0; x <= kXdimension; x += rect_side) {
-    for (float y = 0; y <= kYdimension; y += rect_side) {
-      ci::Color8u rect_color((int) x, 0, 0);
+  for (float y = 0; y < kYdimension; y += rect_side) {
+    for (float x = 0; x < kXdimension; x += rect_side) {
+      ci::Color8u rect_color;
+      // The primary color is only a function of the the height of the box (it does not vary with x direction)
+      // The other two colors do vary with respect to both x and y. The other colors increase when y increasing however,
+      // the amount to which they vary depends on some scaling factor x. If x is maximum then the colors don't depend on y
+      // at all. If x in minimum then the colors vary with y proportional to changes in y.
+      rect_color = ci::Color8u((int)(current_color_ - y), (int)((((255 - x)/255)*(255 - y))), (int)((((255 - x)/255)*(255 - y))));
       ci::gl::color(rect_color);
       ci::Rectf current(top_left_ + glm::vec2(x,y), top_left_ + glm::vec2(x + rect_side,y + rect_side));
       ci::gl::drawSolidRect(current);

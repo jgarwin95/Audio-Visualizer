@@ -38,8 +38,8 @@ void MusicVisualizerApp::draw() {
   Color8u background_color(0, 0, 0);  // black
   gl::clear(background_color);
 
-  picker1_.Draw();
   //container_.Draw();
+  picker1_.Draw();
 }
 
 void MusicVisualizerApp::update() {
