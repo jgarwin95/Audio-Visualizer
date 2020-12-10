@@ -12,10 +12,6 @@ ColorPicker::ColorPicker(int x_pos, int y_pos) {
 }
 
 void ColorPicker::Draw() {
-  // Draw the outer box
-  ci::Color8u background_color(255, 255, 255);  //white
-  ci::gl::color(background_color);
-  ci::gl::drawStrokedRect(rect_);
   // Draw the inner points
   float rect_side = 5;
   glm::vec2 current_radius_pos = top_left_ + glm::vec2(3,3);
@@ -23,16 +19,24 @@ void ColorPicker::Draw() {
   for (float y = 0; y < kYdimension; y += rect_side) {
     for (float x = 0; x < kXdimension; x += rect_side) {
       ci::Color8u rect_color;
-      // The primary color is only a function of the the height of the box (it does not vary with x direction)
-      // The other two colors do vary with respect to both x and y. The other colors increase when y increasing however,
-      // the amount to which they vary depends on some scaling factor x. If x is maximum then the colors don't depend on y
-      // at all. If x in minimum then the colors vary with y proportional to changes in y.
-      rect_color = ci::Color8u((int)(current_color_ - y), (int)((((255 - x)/255)*(255 - y))), (int)((((255 - x)/255)*(255 - y))));
+      // The colors are determined by an initial set level of color with components in red, green, and blue
+      // the color pallet is then created based on the dimensions of the container. The upper left corner is always
+      // white and the bottom of the entire container is always black. In order to achieve this a couple scaling
+      // factors need to be used. the x scale ranges from 0 to 255 and there is the additional term added for the
+      // baseline color. This entire term is then scaled by the proportion that is in the y direction. If y is max
+      // value then no color is present (0,0,0) if y is minimum then this scaling has no effect.
+      rect_color = ci::Color8u((int)(((255-y)/255) * ((255 - x) + ((x*current_red_)/255))),
+                               (int)(((255-y)/255) * ((255 - x) + ((x*current_green_)/255))),
+                               (int)(((255-y)/255) * ((255 - x) + ((x*current_blue_)/255))));
       ci::gl::color(rect_color);
       ci::Rectf current(top_left_ + glm::vec2(x,y), top_left_ + glm::vec2(x + rect_side,y + rect_side));
       ci::gl::drawSolidRect(current);
     }
   }
+  // Draw the outer box
+  ci::Color8u background_color(255, 255, 255);  //white
+  ci::gl::color(background_color);
+  ci::gl::drawStrokedRect(rect_);
 }
 
 } // namespace music_visualizer
