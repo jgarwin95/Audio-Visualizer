@@ -15,6 +15,9 @@ class ColorPicker {
   ColorPicker(int x_pos, int y_pos);
   void Draw();
 
+  const cinder::Rectf &GetRect() const;
+
+  std::vector<int> GetColorsAtLocation(glm::vec2 vec);
  private:
   ci::Rectf rect_;
   glm::vec2 top_left_;

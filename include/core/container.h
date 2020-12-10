@@ -44,6 +44,8 @@ class Container {
    */
   void UpdateMouseNode(const glm::vec2& pos);
 
+  void ChangeNodeColors(std::vector<int> colors);
+
  private:
   /**
    * Number of nodes to be generating upon construction of a container object

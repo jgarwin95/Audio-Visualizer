@@ -3,6 +3,7 @@
 //
 
 #include "core/node.h"
+#include "core/connector.h"
 
 namespace music_visualizer {
 
@@ -15,7 +16,7 @@ Node::Node() {
 }
 
 void Node::Draw() {
-  ci::gl::color(ci::Color("white"));
+  ci::gl::color(NODE_COLOR);
   ci::gl::drawSolidCircle(pos_, radius_);
 }
 

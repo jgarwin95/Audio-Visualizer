@@ -13,7 +13,7 @@ Connector::Connector(const Node& node1,const Node& node2) : node1_(node1), node2
 void Connector::Draw() {
   // Only draw if they are within range
   if (glm::distance(node1_.GetPos(), node2_.GetPos()) < MAX_CONNECTION_DISTANCE) {
-    ci::gl::color(ci::Color8u(color_,color_,color_));
+    ci::gl::color(NODE_COLOR);
     ci::gl::drawLine(node1_.GetPos(), node2_.GetPos());
   }
 }

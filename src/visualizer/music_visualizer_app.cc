@@ -35,8 +35,7 @@ void MusicVisualizerApp::setup() {
 }
 
 void MusicVisualizerApp::draw() {
-  Color8u background_color(0, 0, 0);  // black
-  gl::clear(background_color);
+  gl::clear(BACKGROUND_COLOR);
 
   //container_.Draw();
   picker1_.Draw();
@@ -59,5 +58,14 @@ void MusicVisualizerApp::mouseMove(app::MouseEvent event) {
   container_.UpdateMouseNode(event.getPos());
 }
 
+void MusicVisualizerApp::mouseDown(app::MouseEvent event) {
+  glm::vec2 eventPos = event.getPos();
+  // if within bounds of color picker
+  if ((eventPos.x > picker1_.GetRect().getX1()) && (eventPos.x < picker1_.GetRect().getX2()) &&
+      (eventPos.y > picker1_.GetRect().getY1()) && (eventPos.y < picker1_.GetRect().getY2())) {
+    std::vector<int> colors = picker1_.GetColorsAtLocation(eventPos);
+    BACKGROUND_COLOR = ci::Color8u(colors.at(0),colors.at(1),colors.at(2));
+  }
+}
 }  // namespace music_visualizer
 

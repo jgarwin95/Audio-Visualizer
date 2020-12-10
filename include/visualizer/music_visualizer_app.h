@@ -17,6 +17,8 @@ namespace music_visualizer {
 
 using namespace ci;
 
+ci::Color8u static BACKGROUND_COLOR = ci::Color8u(0,0,0);
+
 /**
  * Simulation of ideal gases.
  */
@@ -28,6 +30,7 @@ class MusicVisualizerApp : public ci::app::App {
   void update() override;
   void setup() override;
   void mouseMove(app::MouseEvent event) override;
+  void mouseDown(app::MouseEvent event) override;
 
   double kWindowSizeX = 2000;
 

@@ -18,6 +18,8 @@ const float static MAX_CONNECTION_DISTANCE = 300;
  */
 const float static MIN_CONNECTION_DISTANCE = 100;
 
+ci::Color8u static NODE_COLOR = ci::Color8u(255,255,255);
+
 class Connector {
 
  public:
