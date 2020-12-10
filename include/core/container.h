@@ -12,6 +12,8 @@
 
 namespace music_visualizer {
 
+ci::Color8u static NODE_COLOR = ci::Color8u(255,255,255);
+
 class Container {
  public:
   Container() = default;

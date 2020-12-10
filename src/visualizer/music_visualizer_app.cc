@@ -69,7 +69,7 @@ void MusicVisualizerApp::mouseDown(app::MouseEvent event) {
       (eventPos.y > node_picker_.GetRect().getY1()) && (eventPos.y < node_picker_.GetRect().getY2())) {
     std::vector<int> colors2 = node_picker_.GetColorsAtLocation(eventPos);
     container_.ChangeNodeColors(colors2);
-    NODE_COLOR = ci::Color8u(colors2.at(0),colors2.at(1),colors2.at(2));
+    //NODE_COLOR = ci::Color8u(colors2.at(0),colors2.at(1),colors2.at(2));
   }
 }
 }  // namespace music_visualizer

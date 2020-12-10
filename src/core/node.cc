@@ -4,6 +4,7 @@
 
 #include "core/node.h"
 #include "core/connector.h"
+#include "core/container.h"
 
 namespace music_visualizer {
 
