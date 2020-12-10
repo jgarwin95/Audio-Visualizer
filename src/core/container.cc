@@ -110,4 +110,8 @@ void Container::UpdateMouseNode(const glm::vec2& pos) {
   mouse_node_.ResetPosition(pos);
 }
 
+void Container::ChangeNodeColors(std::vector<int>& vector) {
+  NODE_COLOR = ci::Color8u(vector.at(0),vector.at(1),vector.at(2));
+}
+
 } // namespace music_visualizer

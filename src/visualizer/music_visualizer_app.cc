@@ -12,7 +12,8 @@ MusicVisualizerApp::MusicVisualizerApp() : container_((int) kWindowSizeX, (int) 
   app::setWindowSize((int) kWindowSizeX, (int) kWindowSizeY);
   app::setWindowPos(50,50);
   music_is_playing_ = false;
-  picker1_ = ColorPicker((int)(kWindowSizeX - 400), 50);
+  background_picker_ = ColorPicker((int)(kWindowSizeX - 400), 50);
+  node_picker_ = ColorPicker((int)(background_picker_.GetRect().getX1()), (int)(background_picker_.GetRect().getY2() + 50));
 }
 
 void MusicVisualizerApp::setup() {
@@ -37,13 +38,12 @@ void MusicVisualizerApp::setup() {
 void MusicVisualizerApp::draw() {
   gl::clear(BACKGROUND_COLOR);
 
-  //container_.Draw();
-  picker1_.Draw();
+  container_.Draw();
+  background_picker_.Draw();
+  node_picker_.Draw();
 }
 
 void MusicVisualizerApp::update() {
-  // TODO:: remove this when done!
-  /*
   if (music_is_playing_) {
     // Feed current volume level to container
     container_.Update(player_.GetRMSVolume());
@@ -51,7 +51,6 @@ void MusicVisualizerApp::update() {
     // no music is playing
     container_.Update();
   }
-   */
 }
 
 void MusicVisualizerApp::mouseMove(app::MouseEvent event) {
@@ -61,10 +60,16 @@ void MusicVisualizerApp::mouseMove(app::MouseEvent event) {
 void MusicVisualizerApp::mouseDown(app::MouseEvent event) {
   glm::vec2 eventPos = event.getPos();
   // if within bounds of color picker
-  if ((eventPos.x > picker1_.GetRect().getX1()) && (eventPos.x < picker1_.GetRect().getX2()) &&
-      (eventPos.y > picker1_.GetRect().getY1()) && (eventPos.y < picker1_.GetRect().getY2())) {
-    std::vector<int> colors = picker1_.GetColorsAtLocation(eventPos);
+  if ((eventPos.x > background_picker_.GetRect().getX1()) && (eventPos.x < background_picker_.GetRect().getX2()) &&
+      (eventPos.y > background_picker_.GetRect().getY1()) && (eventPos.y < background_picker_.GetRect().getY2())) {
+    std::vector<int> colors = background_picker_.GetColorsAtLocation(eventPos);
     BACKGROUND_COLOR = ci::Color8u(colors.at(0),colors.at(1),colors.at(2));
+  }
+  else if ((eventPos.x > node_picker_.GetRect().getX1()) && (eventPos.x < node_picker_.GetRect().getX2()) &&
+      (eventPos.y > node_picker_.GetRect().getY1()) && (eventPos.y < node_picker_.GetRect().getY2())) {
+    std::vector<int> colors2 = node_picker_.GetColorsAtLocation(eventPos);
+    container_.ChangeNodeColors(colors2);
+    NODE_COLOR = ci::Color8u(colors2.at(0),colors2.at(1),colors2.at(2));
   }
 }
 }  // namespace music_visualizer

@@ -39,7 +39,8 @@ class MusicVisualizerApp : public ci::app::App {
  private:
   Container container_;
   MusicPlayer player_;
-  ColorPicker picker1_;
+  ColorPicker background_picker_;
+  ColorPicker node_picker_;
   bool music_is_playing_;
 
 };
