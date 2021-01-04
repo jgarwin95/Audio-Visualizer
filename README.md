@@ -1,4 +1,4 @@
-# Audio connection Graph
+# Audio Connection Visualizer
 ---
 ## About
 #### General
