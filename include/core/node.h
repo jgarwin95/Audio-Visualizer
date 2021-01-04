@@ -9,7 +9,10 @@
 
 namespace music_visualizer {
 
+ci::Color8u static NODE_COLOR = ci::Color8u(255,255,255);
+
 class Node {
+
  public:
   /**
    * Construct a node object that floats through space connecting to other nodes
@@ -29,6 +32,8 @@ class Node {
   float GetRadius() const;
   void ResetPosition(const glm::vec2 &pos);
   void ResetVelocity(const glm::vec2 &velo);
+
+  void static ChangeColor(const std::vector<int> &colors);
 
  private:
   glm::vec2 pos_;

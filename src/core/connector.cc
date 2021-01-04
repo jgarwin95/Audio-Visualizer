@@ -14,7 +14,7 @@ Connector::Connector(const Node& node1,const Node& node2) : node1_(node1), node2
 void Connector::Draw() {
   // Only draw if they are within range
   if (glm::distance(node1_.GetPos(), node2_.GetPos()) < MAX_CONNECTION_DISTANCE) {
-    ci::gl::color(NODE_COLOR);
+    ci::gl::color(CONNECTOR_COLOR);
     ci::gl::drawLine(node1_.GetPos(), node2_.GetPos());
   }
 }
@@ -37,7 +37,12 @@ void Connector::Update(float volume) {
 int Connector::GetColor() const {
   return color_;
 }
+
 float Connector::GetDistance() const {
   return distance_;
+}
+
+void Connector::ChangeColor(const std::vector<int> &colors) {
+  CONNECTOR_COLOR = ci::Color8u(colors.at(0),colors.at(1),colors.at(2));
 }
 } // namespace music_visualizer

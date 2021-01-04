@@ -8,8 +8,9 @@
 
 namespace music_visualizer {
 
-Container::Container(int X_dimension, int Y_dimension) : x_dimension_(X_dimension), y_dimension_(Y_dimension){
-  rect_ = ci::Rectf(glm::vec2(0,0), glm::vec2(X_dimension, Y_dimension));
+Container::Container(int X_dimension, int Y_dimension) : x_dimension_(X_dimension - 500), y_dimension_(Y_dimension){
+  // create container leaving 500 pixels of space to the right for dashboard
+  rect_ = ci::Rectf(glm::vec2(0,0), glm::vec2(x_dimension_, y_dimension_));
   // set random seed
   srand(1001);
 
@@ -50,6 +51,13 @@ Container::Container(std::vector<Node> nodes) : x_dimension_(200), y_dimension_(
 }
 
 void Container::Draw() {
+  // fill container background
+  ci::gl::color(background_color_);
+  ci::gl::drawSolidRect(rect_);
+  // draw container boarder
+  ci::gl::color(ci::Color("white"));
+  ci::gl::drawStrokedRect(rect_);
+
   for (Connector& connector : connectors_) {
     connector.Draw();
   }
@@ -63,7 +71,7 @@ void Container::Update(float RMSVolume) {
     float radius = node.GetRadius();
     // node movement
     node.Update();
-
+    /*
     // If nodes are out of bounds (far enough to not make any connections with nodes that are in bounds) send them to a new random location
     if (node.GetPos().x - radius >= rect_.x2 + MAX_CONNECTION_DISTANCE || node.GetPos().x + radius <= rect_.x1 - MAX_CONNECTION_DISTANCE ||
         node.GetPos().y - radius >= rect_.y2 + MAX_CONNECTION_DISTANCE || node.GetPos().y + radius <= rect_.y1 - MAX_CONNECTION_DISTANCE) {
@@ -91,6 +99,34 @@ void Container::Update(float RMSVolume) {
         node.ResetVelocity(glm::vec2(x_velo,pow(-1,direction)*y_velo));
       }
     }
+    */
+    // If nodes are out of bounds (far enough to not make any connections with nodes that are in bounds) send them to a new random location
+    if (node.GetPos().x >= rect_.x2 - radius || node.GetPos().x <= rect_.x1 ||
+        node.GetPos().y >= rect_.y2  || node.GetPos().y <= rect_.y1) {
+      // random side is picked
+      int side = rand() % 4; // 0-3
+      // generate a random position and velocity
+      int x_pos = rand() % (int) (x_dimension_);
+      int y_pos = rand() % (int) (y_dimension_);
+      int x_velo = rand() % 4;
+      int y_velo = rand() % 4;
+      // virtual coin flip to raise -1 to the power of 1 or 2
+      int direction = rand() % 2 + 1;
+      // assign new position and velocity
+      if (side == 0) { // reset up
+        node.ResetPosition(glm::vec2(x_pos, rect_.y1));
+        node.ResetVelocity(glm::vec2(pow(-1,direction)*x_velo,y_velo));
+      } else if (side == 1) { // reset down
+        node.ResetPosition(glm::vec2(x_pos, rect_.y2));
+        node.ResetVelocity(glm::vec2(pow(-1,direction)*x_velo,-y_velo));
+      } else if (side == 2) { // reset right
+        node.ResetPosition(glm::vec2(rect_.x2 - radius, y_pos));
+        node.ResetVelocity(glm::vec2(-x_velo,pow(-1,direction)*y_velo));
+      } else if (side == 3) { // reset left
+        node.ResetPosition(glm::vec2(rect_.x1, y_pos));
+        node.ResetVelocity(glm::vec2(x_velo,pow(-1,direction)*y_velo));
+      }
+    }
   }
   // update connection strength of each connector
   for (Connector& connector : connectors_) {
@@ -110,8 +146,12 @@ void Container::UpdateMouseNode(const glm::vec2& pos) {
   mouse_node_.ResetPosition(pos);
 }
 
-void Container::ChangeNodeColors(std::vector<int>& vector) {
-  NODE_COLOR = ci::Color8u(vector.at(0),vector.at(1),vector.at(2));
+void Container::ChangeBackgroundColor(std::vector<int>& colors) {
+  background_color_ = ci::Color8u(colors.at(0),colors.at(1),colors.at(2));
+}
+
+const cinder::Rectf &Container::GetRect() const {
+  return rect_;
 }
 
 } // namespace music_visualizer
