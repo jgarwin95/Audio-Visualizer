@@ -12,8 +12,6 @@
 
 namespace music_visualizer {
 
-ci::Color8u static NODE_COLOR = ci::Color8u(255,255,255);
-
 class Container {
  public:
   Container() = default;
@@ -46,7 +44,8 @@ class Container {
    */
   void UpdateMouseNode(const glm::vec2& pos);
 
-  void ChangeNodeColors(std::vector<int> &vector);
+  void ChangeBackgroundColor(std::vector<int> &colors);
+  const cinder::Rectf &GetRect() const;
  private:
   /**
    * Number of nodes to be generating upon construction of a container object
@@ -59,7 +58,7 @@ class Container {
   Node mouse_node_;
   std::vector<Connector> connectors_;
   ci::Rectf rect_;
-
+  ci::Color8u background_color_ = ci::Color8u(0,0,0);
 };
 
 } // namespace music_visualizer

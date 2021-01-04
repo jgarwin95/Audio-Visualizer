@@ -11,13 +11,13 @@
 #include "core/container.h"
 #include "music_player/music_player.h"
 #include "controls/color_picker.h"
+#include "controls/color_segment.h"
+#include "controls/color_bar.h"
 
 
 namespace music_visualizer {
 
 using namespace ci;
-
-ci::Color8u static BACKGROUND_COLOR = ci::Color8u(0,0,0);
 
 /**
  * Simulation of ideal gases.
@@ -41,8 +41,10 @@ class MusicVisualizerApp : public ci::app::App {
   MusicPlayer player_;
   ColorPicker background_picker_;
   ColorPicker node_picker_;
+  ColorBar color_bar_background_;
+  ColorBar color_bar_node_;
   bool music_is_playing_;
-
+  int draw_count;
 };
 
 }  // namespace music_visualizer

@@ -18,6 +18,7 @@ class ColorPicker {
   const cinder::Rectf &GetRect() const;
 
   std::vector<int> GetColorsAtLocation(glm::vec2 vec);
+  void ChangeColors(std::vector<int> vector);
  private:
   ci::Rectf rect_;
   glm::vec2 top_left_;
@@ -25,7 +26,7 @@ class ColorPicker {
   int kYdimension = 255;
 
   int current_red_ = 255;
-  int current_green_ = 128;
+  int current_green_ = 0;
   int current_blue_ = 0;
 };
 

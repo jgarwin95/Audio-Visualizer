@@ -9,6 +9,8 @@
 
 namespace music_visualizer {
 
+ci::Color8u static CONNECTOR_COLOR = ci::Color8u(255,255,255);
+
 /**
  * maximum distance at which a connection is displayed between nodes
  */
@@ -38,6 +40,8 @@ class Connector {
   // Getters & Setters
   int GetColor() const;
   float GetDistance() const;
+
+  void static ChangeColor(const std::vector<int> &colors);
 
  private:
   /**

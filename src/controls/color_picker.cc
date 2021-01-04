@@ -50,4 +50,10 @@ std::vector<int> ColorPicker::GetColorsAtLocation(glm::vec2 vec) {
   return colors;
 }
 
+void ColorPicker::ChangeColors(std::vector<int> vector) {
+  current_red_ = vector.at(0);
+  current_green_ = vector.at(1);
+  current_blue_ = vector.at(2);
+}
+
 } // namespace music_visualizer

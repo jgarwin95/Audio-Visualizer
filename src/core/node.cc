@@ -3,7 +3,6 @@
 //
 
 #include "core/node.h"
-#include "core/connector.h"
 #include "core/container.h"
 
 namespace music_visualizer {
@@ -45,6 +44,10 @@ void Node::ResetPosition(const glm::vec2 &pos) {
 
 void Node::ResetVelocity(const glm::vec2 &new_velocity) {
   velo_ = new_velocity;
+}
+
+void Node::ChangeColor(const std::vector<int> &colors) {
+  NODE_COLOR = ci::Color8u(colors.at(0),colors.at(1),colors.at(2));
 }
 
 
