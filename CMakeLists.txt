@@ -74,6 +74,7 @@ list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
         src/controls/color_picker.cc
         src/controls/color_bar.cc
         src/controls/color_segment.cc
+        src/controls/color_pallete.cc
         )
 
 list(APPEND TEST_FILES tests/music_visualizer_test.cc# add test files here i.e. "tests/test_classifier.cc"
