@@ -1,5 +1,4 @@
 # Audio connection Graph
-  ---
 ---
 ## About
 #### General
