@@ -47,7 +47,6 @@ const cinder::Rectf &ColorBar::GetRect() const {
 std::vector<int> ColorBar::GetColorsAtLocation(glm::vec2& vec) {
   glm::vec2 coords = vec - top_left_;
   int pos = (int)floor(coords.y/height_);
-  //int pos = ((int)vec.y)/height_;
   std::vector<int> colors = segments_.at(pos).GetColorsAtLocation(vec);
   return colors;
 }

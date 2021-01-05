@@ -11,12 +11,21 @@
 
 namespace music_visualizer {
 
-class ColorPallete {
+class ColorPalette {
  public:
-  ColorPallete(int x_pos, int y_pos);
+  ColorPalette() = default;
+  ColorPalette(int x_pos, int y_pos);
   void Draw();
+  bool IsInboundsOfColorBar(glm::vec2& pos);
+  bool IsInboundsOfColorPicker(glm::vec2& pos);
+  void ChangePickerColor(glm::vec2& pos);
+  std::vector<int> GetPickerColor(glm::vec2& pos);
+  const cinder::Rectf& GetRect() const;
 
  private:
+  int kDimensionPicker = 255;
+  int kWidthBar = 25;
+  int kSpacing = 50;
   ci::Rectf rect_;
   glm::vec2 top_left_;
   ColorPicker picker_;

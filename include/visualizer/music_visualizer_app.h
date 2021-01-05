@@ -13,6 +13,7 @@
 #include "controls/color_picker.h"
 #include "controls/color_segment.h"
 #include "controls/color_bar.h"
+#include "controls/color_palette.h"
 
 
 namespace music_visualizer {
@@ -33,16 +34,19 @@ class MusicVisualizerApp : public ci::app::App {
   void mouseDown(app::MouseEvent event) override;
 
   double kWindowSizeX = 2000;
-
   double kWindowSizeY = 1000;
 
  private:
   Container container_;
   MusicPlayer player_;
+  ColorPalette palette1_;
+  ColorPalette palette2_;
+  /*
   ColorPicker background_picker_;
   ColorPicker node_picker_;
   ColorBar color_bar_background_;
   ColorBar color_bar_node_;
+   */
   bool music_is_playing_;
   int draw_count;
 };
