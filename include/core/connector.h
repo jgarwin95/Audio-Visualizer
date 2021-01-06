@@ -36,18 +36,24 @@ class Connector {
   /**
    * Update distance and the associated connection strength with that distance
    */
-  void Update(float volume = 1);
+  void Update(ci::Color8u &background, float volume = 1);
   // Getters & Setters
-  int GetColor() const;
+  ci::Color8u GetColor() const;
   float GetDistance() const;
 
+  /**
+   * Initial update of color sets new baseline shared by all instances
+   * @param colors std::vector<int> representing RGB values
+   */
   void static ChangeColor(const std::vector<int> &colors);
+  /**
+   * Update instance colors based on connection distance. Does not affect baseline color
+   * @param colors std::vector<int> representing RGB values
+   */
+  void UpdateColor(const std::vector<int> &colors);
 
  private:
-  /**
-   * Color denotes connection strength. 255 is white while 0 is black (same color as background).
-   */
-  int color_ = 255;
+  ci::Color8u color_ = ci::ColorA8u(255,255,255);
   float distance_;
   const Node& node1_;
   const Node& node2_;

@@ -24,7 +24,6 @@ void ColorSegment::Draw() {
     ci::gl::color(rect_color);
     ci::Rectf current(top_left_ + glm::vec2(0,y), top_left_ + glm::vec2(width_,y + rect_height));
     ci::gl::drawSolidRect(current);
-    //break;
   }
 }
 

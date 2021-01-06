@@ -19,7 +19,7 @@ void ColorPicker::Draw() {
   for (float y = 0; y < kYdimension; y += rect_side) {
     for (float x = 0; x < kXdimension; x += rect_side) {
       // The colors are determined by an initial set level of color with components in red, green, and blue
-      // the color pallet is then created based on the dimensions of the container. The upper left corner is always
+      // The color pallet is then created based on the dimensions of the container. The upper left corner is always
       // white and the bottom of the entire container is always black. In order to achieve this a couple scaling
       // factors need to be used. the x scale ranges from 0 to 255 and there is the additional term added for the
       // baseline color. This entire term is then scaled by the proportion that is in the y direction. If y is max

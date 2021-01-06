@@ -130,7 +130,7 @@ void Container::Update(float RMSVolume) {
   }
   // update connection strength of each connector
   for (Connector& connector : connectors_) {
-    connector.Update(RMSVolume);
+    connector.Update(background_color_, RMSVolume);
   }
 }
 
@@ -152,6 +152,10 @@ void Container::ChangeBackgroundColor(std::vector<int>& colors) {
 
 const cinder::Rectf &Container::GetRect() const {
   return rect_;
+}
+
+const cinder::Color8u& Container::GetBackgroundColor() const {
+  return background_color_;
 }
 
 } // namespace music_visualizer

@@ -10,9 +10,6 @@
 #include "cinder/gl/gl.h"
 #include "core/container.h"
 #include "music_player/music_player.h"
-#include "controls/color_picker.h"
-#include "controls/color_segment.h"
-#include "controls/color_bar.h"
 #include "controls/color_palette.h"
 
 
@@ -41,12 +38,6 @@ class MusicVisualizerApp : public ci::app::App {
   MusicPlayer player_;
   ColorPalette palette1_;
   ColorPalette palette2_;
-  /*
-  ColorPicker background_picker_;
-  ColorPicker node_picker_;
-  ColorBar color_bar_background_;
-  ColorBar color_bar_node_;
-   */
   bool music_is_playing_;
   int draw_count;
 };

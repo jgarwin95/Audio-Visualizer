@@ -46,6 +46,8 @@ class Container {
 
   void ChangeBackgroundColor(std::vector<int> &colors);
   const cinder::Rectf &GetRect() const;
+  const cinder::Color8u &GetBackgroundColor() const;
+
  private:
   /**
    * Number of nodes to be generating upon construction of a container object
