@@ -32,7 +32,7 @@ format of Google's color picker. The upper color picker will
 allow you to change the overall background color while the color picker below will allow you to change the 
 node and connection color. In order to change the base color of the color picker, simply click on the color bar to the 
 left on the desired color
-<img src="gifs/google-color-picker.jpg" width="300" height="200">
+<img align="top" src="gifs/google-color-picker.jpg" width="300" height="200">
 
 ###### Demo - Color Picking
 ![photo](gifs/color-picker.gif)
