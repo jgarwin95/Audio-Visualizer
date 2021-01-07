@@ -15,8 +15,10 @@ void Connector::Draw() {
   // Only draw if they are within range
   if (glm::distance(node1_.GetPos(), node2_.GetPos()) < MAX_CONNECTION_DISTANCE) {
     ci::gl::color(color_);
+    // increase line width
     ci::gl::lineWidth(2.0f);
     ci::gl::drawLine(node1_.GetPos(), node2_.GetPos());
+    // reduce back to normal after drawing
     ci::gl::lineWidth(1.0f);
   }
 }
@@ -33,6 +35,7 @@ void Connector::Update(ci::Color8u &background, float volume) {
   int current_red = 0;
   int current_green = 0;
   int current_blue = 0;
+
   if (distance_ < MIN_CONNECTION_DISTANCE) {
     // full connection strength if within MIN_CONNECTION_DISTANCE
     current_red = baseline_red;
@@ -52,9 +55,11 @@ void Connector::Update(ci::Color8u &background, float volume) {
     current_blue = background_blue;
   }
   // scale color with itself according to RMS volume
-  current_red = (int)(current_red*volume);
-  current_green = (int)(current_green*volume);
-  current_blue = (int)(current_blue*volume);
+  // less than or equal to current color, greater than or equal to background
+  current_red = background_red + (int) ((current_red - background_red) * volume);
+  current_green = background_green + (int) ((current_green - background_green) * volume);
+  current_blue = background_blue + (int) ((current_blue - background_blue) * volume);
+
   std::vector<int> colors = {current_red, current_green, current_blue};
   UpdateColor(colors);
 }
@@ -68,7 +73,7 @@ float Connector::GetDistance() const {
 }
 
 void Connector::ChangeColor(const std::vector<int> &colors) {
-  // baseline color set
+  // set baseline color
   CONNECTOR_COLOR = ci::Color8u(colors.at(0),colors.at(1),colors.at(2));
 }
 

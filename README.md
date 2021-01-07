@@ -20,7 +20,7 @@ node and connection color.
 
 ---
 ## Demo
-![photo](demo.gif)
+![photo](gifs/demo.gif)
 
 ---
 ## Set-Up

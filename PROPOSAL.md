@@ -8,7 +8,7 @@ in accordance with various aspects of the music as well as through user input.
 This idea draws inspiration from two sources. First from the [StackOverflow Developer Survey website](https://insights.stackoverflow.com/survey/).
  (This can be seen below).
 
-![photo](sample.gif)
+![photo](gifs/sample.gif)
  
  In general, I just really enjoy this visually; the nodes floating through space,
  connecting to their nearest neighbors, and the ability for the user to introduce
