@@ -8,7 +8,7 @@ nearest neighbors and you too can create connections with other nodes through mo
 
 #### Node Interaction
 Nodes interact with their nearest neighbors which includes a node generate by mouse location. These connections between
-nodes are variable and scale in intensity based on distance between the two nodes and root mean squared volume of the
+nodes are variable and scale in intensity based on distance between the two nodes and the root mean squared volume of the
 music playing in the background.
 ###### Demo - Distance Scaling
 ![photo](gifs/connection-scaling.gif)
@@ -23,10 +23,11 @@ above and the display will begin without any music scaling.
 #### User Controls - Color Picking
 The app has some user input controls. Outside of mouse inputs for generating new connections, there are two
 color pickers displayed on the screen for changing the colors of the display. These color pickers mimick the styling 
-format of Google's color picker <img align="right" src="gifs/google-color-picker.jpg" width="300" height="200"> The upper color picker will
+format of Google's color picker. The upper color picker will
 allow you to change the overall background color while the color picker below will allow you to change the 
 node and connection color. In order to change the base color of the color picker, simply click on the color bar to the 
 left on the desired color
+<img src="gifs/google-color-picker.jpg" width="300" height="200">
 
 
 ###### Demo - Color Picking
