@@ -14,14 +14,12 @@ music playing in the background.
 ![photo](gifs/connection-scaling.gif)
 
 
-
-
 #### Using Music
 The app is designed to be used with music but will function (just display a non-musically dynamic graph)
 without music provided by the user.  <img align="left" src="gifs/music_selection.jpg" width="180" height="120"> Upon starting up the application, you will be prompted for a file input of 
 which you can choose any .mp3 or .wav file. Immediately the music will start. Node connection strength is scaled based on the RMS (root mean squared) volume of the music. You also have the option to select "Cancel" from the prompt
 above and the display will begin without any music scaling.
-\_
+
 #### User Controls - Color Picking
 The app has some user input controls. Outside of mouse inputs for generating new connections, there are two
 color pickers displayed on the screen for changing the colors of the display. These color pickers mimick the styling 
@@ -39,8 +37,6 @@ left on the desired color
 ![photo](gifs/full-demo.gif)
 ## Full Demo - With Music
 ![photo](gifs/demo-w-music.gif)
-
-(if you are interested in the above demo with sound there is the vid-w-music.mp4 located in /gifs)
 
 ---
 ## Set-Up
